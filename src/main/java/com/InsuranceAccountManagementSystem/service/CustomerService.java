@@ -22,6 +22,18 @@ public class CustomerService {
     public Customer saveCustomer(Customer customer){
         return customerRepository.save(customer);
     }
+    public Customer updateCustomer(Long id ,Customer updateCustomer){
+        Optional<Customer>optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isPresent()){
+            Customer existingCustomer = optionalCustomer.get();
+            existingCustomer.setName(updateCustomer.getName());
+            existingCustomer.setName(updateCustomer.getEmail());
+            return customerRepository.save(existingCustomer);
+        }
+        else{
+            throw new IllegalArgumentException("Customer not found");
+        }
+    }
     public void deleteCustomer(Long id){
         customerRepository.deleteById(id);
     }
