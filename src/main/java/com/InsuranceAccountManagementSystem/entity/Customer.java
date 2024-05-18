@@ -21,6 +21,9 @@ public class Customer {
         this.name=name;
         this.email=email;
     }
+    public Customer(Long id ){
+
+    }
 
     public Long getId() {
         return id;

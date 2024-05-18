@@ -21,6 +21,9 @@ public class Policy {
         this.policyNumber=policyNumber;
         this.premium=premium;
     }
+    public Policy(Long id){
+
+    }
 
     public Long getId() {
         return id;
