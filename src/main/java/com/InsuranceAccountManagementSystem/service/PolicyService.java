@@ -22,6 +22,18 @@ public class PolicyService {
     public Policy savePolicy(Policy policy){
         return policyRepository.save(policy);
     }
+    public Policy updatePolicy(Long id , Policy updatePolicy){
+        Optional<Policy>optionalPolicy = policyRepository.findById(id);
+        if (optionalPolicy.isPresent()){
+            Policy existingPolicy = optionalPolicy.get();
+            existingPolicy.setPolicyNumber(updatePolicy.getPolicyNumber());
+            existingPolicy.setPremium(updatePolicy.getPremium());
+            return policyRepository.save(existingPolicy);
+        }
+        else {
+            throw new IllegalArgumentException("Policy not found");
+        }
+    }
     public void deletePolicy(Long id){
         policyRepository.deleteById(id);
     }
