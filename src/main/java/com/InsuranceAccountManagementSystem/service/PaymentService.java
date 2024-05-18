@@ -35,6 +35,23 @@ public class PaymentService {
     public void deletePayment(Long id){
         paymentRepository.deleteById(id);
     }
+    public Payment updatePayment(Long id ,Payment  updatePayment){
+        Optional<Payment>optionalPayment = paymentRepository.findById(id);
+        if(optionalPayment.isPresent()){
+            Payment existingPayment=optionalPayment.get();
+            existingPayment.setAmount(updatePayment.getAmount());
+            existingPayment.setPaymentDate(updatePayment.getPaymentDate());
+            if (updatePayment.getPolicy() != null){
+                existingPayment.setPolicy(updatePayment.getPolicy());
+            }
+            if (updatePayment.getCustomer() != null){
+                existingPayment.setCustomer(updatePayment.getCustomer());
+            }
+            return paymentRepository.save(existingPayment);
+        }else {
+            throw new IllegalArgumentException("Payment not found");
+        }
+    }
 
     public Payment processPayment(Long policyId,Long customerId,double amount) {
         Optional<Policy> policyOpt = policyRepository.findById(policyId);
