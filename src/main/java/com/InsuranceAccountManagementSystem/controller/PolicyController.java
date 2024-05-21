@@ -29,5 +29,18 @@ public class PolicyController {
     public Policy createPolicy(@RequestBody Policy policy){
         return policyService.savePolicy(policy);
     }
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Policy>updatePolicy(@PathVariable Long id,@RequestBody Policy updatepolicy){
+        try {
+            Policy policy = policyService.updatePolicy(id,updatepolicy);
+            return ResponseEntity.ok(policy);
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void>deletePolicy(@PathVariable Long id){
+        policyService.deletePolicy(id);
+        return ResponseEntity.noContent().build();
+    }
 }
