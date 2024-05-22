@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    container_name: insurance
+    environment:
+      MYSQL_ROOT_PASSWORD: 549911Aa.
+      MYSQL_DATABASE: insuranceaccountmanagementsystem
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 549911Aa
+    ports:
+      - '3306:3306'
