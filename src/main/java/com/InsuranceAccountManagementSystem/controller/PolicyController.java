@@ -25,7 +25,7 @@ public class PolicyController {
         return policy.map(ResponseEntity::ok)
                 .orElseGet(()->ResponseEntity.notFound().build());
     }
-    @PostMapping
+    @PostMapping("/create")
     public Policy createPolicy(@RequestBody Policy policy){
         return policyService.savePolicy(policy);
     }
